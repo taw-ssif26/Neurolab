@@ -1,31 +1,25 @@
-import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import "./globals.css";
+import { Poppins } from "next/font/google";
+import Nav from "@/components/Nav";
 
-const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+const f = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
-export const metadata: Metadata = {
-  title: { default: "NEURO//LAB", template: "%s · NEURO//LAB" },
-  description:
-    "An interactive research laboratory for exploring and experimenting with artificial neural networks.",
+export const metadata = {
+  title: "NEURO//LAB",
+  description: "Learn how neural networks work and try them out.",
 };
 
-export const viewport: Viewport = { themeColor: "#080B10", width: "device-width", initialScale: 1 };
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function L({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${grotesk.variable} ${inter.variable} ${mono.variable}`}>
-      <body>
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-signal focus:px-4 focus:py-2 focus:text-void">
-          Skip to content
-        </a>
+    <html lang="en">
+      <body className={f.className}>
         <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        {children}
+        <footer className="bg-ink mt-16 py-8 text-center text-sm text-white/70">
+          <p className="font-semibold text-white">NEURO//LAB</p>
+          <p className="mt-1">Made for Pixel Contest 5.0 - theme: Neural Networks</p>
+          <p className="mt-1">Everything here runs in your browser. No server needed.</p>
+        </footer>
       </body>
     </html>
   );

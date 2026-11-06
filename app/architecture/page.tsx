@@ -1,57 +1,49 @@
-import type { Metadata } from "next";
-import SectionHead from "@/components/SectionHead";
-import Reveal from "@/components/Reveal";
-import NeuronLab from "@/components/NeuronLab";
-import NetworkBuilder from "@/components/NetworkBuilder";
-import ActivationLab from "@/components/ActivationLab";
-import ForwardProp from "@/components/ForwardProp";
-import LossLab from "@/components/LossLab";
+import Neuron from "@/components/Neuron";
+import Builder from "@/components/Builder";
+import Acts from "@/components/Acts";
+import Forward from "@/components/Forward";
+import Loss from "@/components/Loss";
+import Box from "@/components/Box";
 
-export const metadata: Metadata = { title: "Network Architecture", description: "Neurons, layers, activations, forward propagation and loss functions, each with an interactive demonstration." };
+export const metadata = { title: "Network Architecture | NEURO//LAB" };
 
-export default function Architecture() {
+export default function Page() {
   return (
-    <>
-      <header className="wrap pb-8 pt-20">
-        <p className="label">Page 02 / Architecture</p>
-        <h1 className="h-display mt-5 text-[clamp(2.6rem,7vw,5.6rem)]">Anatomy of a Neural Network</h1>
-        <p className="mt-6 text-xl text-mute">Every prediction begins with a signal.</p>
-      </header>
+    <div className="mx-auto max-w-5xl space-y-12 px-4 py-10">
+      <div>
+        <h1 className="text-4xl font-bold">Anatomy of a neural network</h1>
+        <p className="mt-2 text-lg text-ink/70">Every prediction starts with a signal.</p>
+      </div>
 
-      <section className="wrap pt-20">
-        <SectionHead index="01" label="Artificial neurons" title="One neuron, fully exposed.">
-          <p>Change any input, weight or bias. The weighted sum z and the activated output a are recomputed on every movement, and the marker shows where z lands on the activation curve.</p>
-        </SectionHead>
-        <Reveal><NeuronLab /></Reveal>
+      <section>
+        <h2 className="mb-1 text-2xl font-bold text-pu">1. One neuron</h2>
+        <p className="mb-4 text-sm">Move the sliders. The weighted sum z is worked out, then the activation function squashes it. The pink dot shows where z lands on the curve.</p>
+        <Box c="pu"><Neuron /></Box>
       </section>
 
-      <section className="wrap pt-32">
-        <SectionHead index="02" label="Layers" title="Neurons in layers.">
-          <p>Every neuron in a layer connects to every neuron in the next. Select a neuron to light up its incoming and outgoing links, and resize the network to see how quickly the parameter count grows.</p>
-        </SectionHead>
-        <Reveal><NetworkBuilder /></Reveal>
+      <section>
+        <h2 className="mb-1 text-2xl font-bold text-pk">2. Layers</h2>
+        <p className="mb-4 text-sm">Every neuron connects to every neuron in the next layer, so the number of weights grows fast. Change the shape and watch the counts.</p>
+        <Box c="pk"><Builder /></Box>
       </section>
 
-      <section className="wrap pt-32">
-        <SectionHead index="03" label="Activation functions" title="The nonlinearity.">
-          <p>Activation functions let networks represent curved, non-linear relationships. Choose one and drag z to see its output.</p>
-        </SectionHead>
-        <Reveal><ActivationLab /></Reveal>
+      <section>
+        <h2 className="mb-1 text-2xl font-bold text-gr">3. Activation functions</h2>
+        <p className="mb-4 text-sm">Without these, a network with a hundred layers would still just be one straight-line equation. They are what lets it learn curves.</p>
+        <Box c="gr"><Acts /></Box>
       </section>
 
-      <section className="wrap pt-32">
-        <SectionHead index="04" label="Forward propagation" title="Following the signal.">
-          <p>A fixed 2-3-1 network (tanh hidden units, sigmoid output). Play it, pause it, or advance one computational step at a time.</p>
-        </SectionHead>
-        <Reveal><ForwardProp /></Reveal>
+      <section>
+        <h2 className="mb-1 text-2xl font-bold text-bl">4. Forward propagation</h2>
+        <p className="mb-4 text-sm">Press Next step to follow one set of inputs all the way to the output of a small 2-3-1 network.</p>
+        <Box c="bl"><Forward /></Box>
       </section>
 
-      <section className="wrap pt-32">
-        <SectionHead index="05" label="Loss functions" title="Measuring being wrong.">
-          <p>Training needs a single number describing prediction error. Mean squared error suits regression; binary cross-entropy is the standard for two-class probabilities.</p>
-        </SectionHead>
-        <Reveal><LossLab /></Reveal>
+      <section>
+        <h2 className="mb-1 text-2xl font-bold text-ink">5. Loss functions</h2>
+        <p className="mb-4 text-sm">A loss function turns &quot;how wrong was that?&quot; into a single number. Training tries to make that number small.</p>
+        <Box c="ye"><Loss /></Box>
       </section>
-    </>
+    </div>
   );
 }

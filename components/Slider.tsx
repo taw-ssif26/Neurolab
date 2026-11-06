@@ -1,15 +1,11 @@
-"use client";
-import { useId } from "react";
+type P = { l: string; v: number; a: number; b: number; s?: number; o: (n: number) => void };
 
-type Props = { label: string; value: number; min: number; max: number; step?: number; digits?: number; onChange: (v: number) => void };
-
-export default function Slider({ label, value, min, max, step = 0.01, digits = 2, onChange }: Props) {
-  const id = useId();
+export default function Slider({ l, v, a, b, s = 0.01, o }: P) {
   return (
-    <div className="grid grid-cols-[3.5rem_1fr_3.5rem] items-center gap-3">
-      <label htmlFor={id} className="font-mono text-xs text-mute">{label}</label>
-      <input id={id} type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} />
-      <output htmlFor={id} className="text-right font-mono text-xs text-signal">{value.toFixed(digits)}</output>
-    </div>
+    <label className="my-1 flex items-center gap-3 text-sm">
+      <span className="w-14">{l}</span>
+      <input className="flex-1 accent-pu" type="range" min={a} max={b} step={s} value={v} onChange={(e) => o(+e.target.value)} />
+      <span className="w-12 text-right font-medium text-pu">{v.toFixed(s >= 1 ? 0 : 2)}</span>
+    </label>
   );
 }

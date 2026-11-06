@@ -1,129 +1,89 @@
 import Link from "next/link";
-import HeroNetwork from "@/components/HeroNetwork";
-import NeuronSketch from "@/components/NeuronSketch";
-import SectionHead from "@/components/SectionHead";
-import Reveal from "@/components/Reveal";
-import CountUp from "@/components/CountUp";
+import Hero from "@/components/Hero";
+import Box from "@/components/Box";
 
-const LAYERS = [
-  ["L0", "Input layer", "Holds the raw numbers: pixel intensities, word embeddings, sensor readings. It performs no computation of its own."],
-  ["L1…n", "Hidden layers", "Each neuron weighs every output of the layer before it. Stacking layers lets the network compose simple features into complicated ones."],
-  ["Lₙ", "Output layer", "Produces the prediction: a probability, a class score or a continuous value. During inference, information flows strictly forward."],
+const A = [
+  ["Computer vision", "Recognising what is in a picture.", "pk"],
+  ["Language", "Translation, chatbots, summaries.", "bl"],
+  ["Healthcare", "Helping doctors read scans.", "gr"],
+  ["Science", "Predicting protein shapes and weather.", "ye"],
 ];
-const APPS = [
-  ["Computer vision", "Image classification, detection and segmentation."],
-  ["Language", "Translation, summarisation and conversational systems."],
-  ["Healthcare", "Assisting clinicians in reading medical images."],
-  ["Science", "Protein structure, weather emulation and astronomy."],
-];
-const STATS: [number, string][] = [[5, "live experiments"], [4, "activation functions"], [2, "loss functions"], [0, "servers required"]];
 
 export default function Home() {
   return (
     <>
-      <section className="wrap grid min-h-[calc(100vh-4rem)] items-center gap-12 py-12 lg:grid-cols-[1.05fr_1fr]">
-        <div>
-          <p className="label">Computational Intelligence / 001</p>
-          <h1 className="h-display mt-6 text-[clamp(2.8rem,7.4vw,6rem)]">Inside the Architecture of Intelligence.</h1>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-mute">
-            NEURO//LAB is a working research environment for artificial neural networks. Nothing here is a mock-up: every network is computing, and every curve is measured from real arithmetic running in your browser.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link href="/architecture" className="btn btn-primary">Explore the network</Link>
-            <Link href="/lab" className="btn">Enter the lab</Link>
-          </div>
-        </div>
-        <HeroNetwork />
-      </section>
-
-      <section className="border-y border-line bg-panel/60">
-        <dl className="wrap grid grid-cols-2 md:grid-cols-4">
-          {STATS.map(([n, t], i) => (
-            <div key={t} className={`py-8 ${i ? "md:border-l md:border-line md:pl-8" : ""}`}>
-              <dt className="font-mono text-4xl text-find"><CountUp to={n} /></dt>
-              <dd className="label-mute mt-2">{t}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section className="wrap pt-32">
-        <SectionHead index="01" label="Foundations" title="What is a neural network?">
-          <p>A neural network is a function with adjustable numbers inside it. Its design borrows loosely from biology: neurons receive signals through synapses of differing strength, and fire when the combined input is large enough.</p>
-        </SectionHead>
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <Reveal className="panel"><NeuronSketch /></Reveal>
-          <Reveal delay={0.1}>
-            <ol className="divide-y divide-line border-y border-line">
-              {[["Biological inspiration", "Dendrites collect signals, a cell body integrates them, an axon passes the result on."],
-                ["Artificial neuron", "Keeps only that skeleton: weighted inputs, a sum, and a threshold-like response."],
-                ["Weighted connections", "Each weight sets how strongly one neuron influences the next. These are what get learned."],
-                ["Computational learning", "Weights are nudged to reduce prediction error across many examples."]].map(([h, p], i) => (
-                <li key={h} className="grid grid-cols-[48px_1fr] gap-4 py-5">
-                  <span className="font-mono text-sm text-find">0{i + 1}</span>
-                  <div><p className="font-display text-lg">{h}</p><p className="mt-1 text-sm leading-relaxed text-mute">{p}</p></div>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="wrap pt-32">
-        <SectionHead index="02" label="Structure" title="The architecture" />
-        {LAYERS.map(([k, t, p], i) => (
-          <Reveal key={t} delay={i * 0.05}>
-            <div className="grid gap-4 border-t border-line py-8 md:grid-cols-[120px_1fr_1.6fr] md:gap-8">
-              <span className="font-mono text-sm text-find">{k}</span>
-              <h3 className="font-display text-2xl">{t}</h3>
-              <p className="leading-relaxed text-mute">{p}</p>
-            </div>
-          </Reveal>
-        ))}
-      </section>
-
-      <section className="wrap pt-32">
-        <SectionHead index="03" label="Mathematics" title="One equation, repeated billions of times." />
-        <div className="grid gap-10 lg:grid-cols-2">
-          <Reveal className="panel">
-            <p className="font-mono text-2xl leading-[2.4] text-find sm:text-3xl">z = Σ(wᵢxᵢ) + b<br />a = f(z)</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <dl className="divide-y divide-line border-y border-line">
-              {[["xᵢ", "the inputs arriving at the neuron"], ["wᵢ", "learned weights scaling each input"], ["b", "bias, shifting the point at which the neuron activates"], ["z", "the pre-activation: a weighted sum plus the bias"], ["f", "a nonlinear activation. Without it, stacked layers collapse into one linear map"], ["a", "the neuron’s output, passed to the next layer"]].map(([s, d]) => (
-                <div key={s} className="grid grid-cols-[56px_1fr] py-3"><dt className="font-mono text-signal">{s}</dt><dd className="text-sm text-mute">{d}</dd></div>
-              ))}
-            </dl>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="wrap pt-32">
-        <Reveal className="panel grid items-end gap-8 p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr]">
+      <section className="bg-gradient-to-br from-pu to-pk text-white">
+        <div className="mx-auto grid max-w-5xl items-center gap-6 px-4 py-14 md:grid-cols-2">
           <div>
-            <p className="label">Section 04 · The Learning Lab</p>
-            <h2 className="h-display mt-4 text-4xl sm:text-5xl">Train a network and watch the boundary form.</h2>
-            <p className="mt-5 max-w-xl text-mute">Build architectures, run backpropagation on four datasets, and see why a single neuron cannot learn XOR.</p>
+            <h1 className="text-4xl font-bold leading-tight md:text-5xl">How do neural networks actually work?</h1>
+            <p className="mt-4 text-lg text-white/90">
+              A small site where you can poke at neurons, watch signals move through layers and train a real network in your browser.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/architecture" className="btn bg-ye text-ink hover:bg-yellow-300">Explore the network</Link>
+              <Link href="/lab" className="btn btn2 border-white bg-transparent text-white hover:bg-white/20">Go to the lab</Link>
+            </div>
           </div>
-          <div><Link href="/lab" className="btn btn-primary">Open the laboratory →</Link></div>
-        </Reveal>
-      </section>
-
-      <section className="wrap pt-32">
-        <SectionHead index="05" label="In the world" title="Applications" />
-        <div className="border-t border-line">
-          {APPS.map(([t, d], i) => (
-            <Reveal key={t} delay={i * 0.04}>
-              <Link href="/applications" className="group grid grid-cols-[48px_1fr] items-baseline gap-4 border-b border-line py-7 transition-colors hover:bg-panel sm:grid-cols-[48px_1fr_1.2fr_auto] sm:px-3">
-                <span className="font-mono text-sm text-find">0{i + 1}</span>
-                <span className="font-display text-2xl sm:text-3xl">{t}</span>
-                <span className="col-span-2 text-sm text-mute sm:col-span-1">{d}</span>
-                <span className="hidden text-mute transition-transform group-hover:translate-x-1 group-hover:text-signal sm:block">→</span>
-              </Link>
-            </Reveal>
-          ))}
+          <Hero />
         </div>
       </section>
+
+      <div className="mx-auto max-w-5xl space-y-14 px-4 py-14">
+        <section>
+          <h2 className="text-3xl font-bold">What is a neural network?</h2>
+          <p className="mt-3 max-w-3xl">
+            A neural network is a program made of lots of tiny units called neurons. Each one takes some numbers in, does a little maths and passes a number on. On their own they are simple, but connect thousands of them together and they can learn to recognise faces, translate languages or play games.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <Box c="pk"><h3 className="font-semibold">Biological inspiration</h3><p className="mt-2 text-sm">Brain cells receive signals, add them up and fire if the total is big enough. Artificial neurons copy that idea.</p></Box>
+            <Box c="bl"><h3 className="font-semibold">Artificial neuron</h3><p className="mt-2 text-sm">Multiply each input by a weight, add a bias, then squash the result with an activation function.</p></Box>
+            <Box c="gr"><h3 className="font-semibold">Weighted connections</h3><p className="mt-2 text-sm">A weight says how much one neuron cares about another. Big weight, big influence.</p></Box>
+            <Box c="ye"><h3 className="font-semibold">Learning</h3><p className="mt-2 text-sm">Training means nudging the weights bit by bit until the answers get less wrong.</p></Box>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold">The layers</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <Box c="ye"><h3 className="font-semibold">Input layer</h3><p className="mt-2 text-sm">Where the raw data goes in: pixels, numbers, sensor readings. No maths happens here.</p></Box>
+            <Box c="gr"><h3 className="font-semibold">Hidden layers</h3><p className="mt-2 text-sm">The middle. Each layer builds on the last, finding more complex patterns as you go deeper.</p></Box>
+            <Box c="pk"><h3 className="font-semibold">Output layer</h3><p className="mt-2 text-sm">The answer comes out here, like a probability or a category.</p></Box>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold">The maths</h2>
+          <div className="mt-5 grid items-center gap-5 md:grid-cols-2">
+            <div className="rounded-xl bg-ink p-6 text-xl text-ye">
+              <p>z = w1*x1 + w2*x2 + ... + b</p>
+              <p className="mt-2">a = f(z)</p>
+            </div>
+            <ul className="space-y-1 text-sm">
+              <li><b className="text-pu">x</b> are the inputs</li>
+              <li><b className="text-pk">w</b> are the weights (what the network learns)</li>
+              <li><b className="text-gr">b</b> is the bias, which shifts the result up or down</li>
+              <li><b className="text-bl">f</b> is the activation function, which adds the non-linear bit</li>
+              <li><b className="text-ye">a</b> is the neuron output that goes to the next layer</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="rounded-2xl bg-ye/30 p-8">
+          <h2 className="text-3xl font-bold">Try it yourself</h2>
+          <p className="mt-2">Build a network, train it on some data and see why XOR is such a famous problem.</p>
+          <Link href="/lab" className="btn mt-4">Open the learning lab</Link>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold">Where they are used</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {A.map(([t, d, c]) => (
+              <Box key={t} c={c}><h3 className="font-semibold">{t}</h3><p className="mt-2 text-sm">{d}</p></Box>
+            ))}
+          </div>
+          <Link href="/applications" className="mt-5 inline-block font-medium text-pu underline">See more</Link>
+        </section>
+      </div>
     </>
   );
 }

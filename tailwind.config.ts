@@ -1,27 +1,19 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        void: "#080B10",
-        panel: "#0D121A",
-        raised: "#121923",
-        ink: "#E9F0F7",
-        mute: "#929EAD",
-        signal: "#55D6E8",
-        compute: "#527BFF",
-        find: "#F0B35A",
-        line: "rgba(255,255,255,0.09)",
-      },
-      fontFamily: {
-        display: ["var(--font-grotesk)", "system-ui", "sans-serif"],
-        body: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        bg: "#f7f4ff",
+        ink: "#241b4b",
+        pu: "#6c4bf4",
+        pk: "#ff5d8f",
+        ye: "#ffc83d",
+        gr: "#1fb58f",
+        bl: "#2d9cdb",
       },
     },
   },
   plugins: [],
-};
-export default config;
+} satisfies Config;
