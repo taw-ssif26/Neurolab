@@ -1,18 +1,6 @@
 # NEURO//LAB
 
 Website about neural networks for Pixel Contest 5.0. It explains how they work and has small experiments you can play with. Built with Next.js, TypeScript and Tailwind. Everything runs in the browser, there is no backend.
-
-## Running it
-
-```
-npm install
-npm run dev
-```
-
-Then open http://localhost:3000. You need Node 18 or newer.
-
-`npm run build` then `npm start` for the production version.
-
 ## Pages
 
 - `/` overview, what a neural network is, layers, the maths
