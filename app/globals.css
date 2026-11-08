@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #f7f4ff;
+  color: #241b4b;
+}
+
+.btn {
+  background: #6c4bf4;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+}
+.btn:hover { background: #5a3ad6; }
+.btn2 { background: white; color: #6c4bf4; border: 2px solid #6c4bf4; }
+.btn2:hover { background: #efeaff; }
+
+.pulse {
+  animation: pulse 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes pulse {
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+}
